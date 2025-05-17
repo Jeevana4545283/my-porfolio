@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevana Sapavath - Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #334e68;
+            --accent-color: #f9c74f;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background-color: #e9ecef;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: var(--primary-color);
+        }
+        .profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .contact-info a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .contact-info i {
+            margin-right: 5px;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+        
+        section {
+            padding: 60px 0;
+            display: none;
+        }
+        
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .objective {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .education-item,
+        .project-item,
+        .activity-item,
+        .skill-category {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            transition: transform 0.3s;
+        }
+        
+        .education-item:hover,
+        .project-item:hover,
+        .activity-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .education-item h3,
+        .project-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .education-date,
+        .project-date {
+            color: gray;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background-color: var(--light-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-description {
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        
+        .activities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .activity-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .activity-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .projects-container,
+            .activities-container,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="home">
+        <div class="container header-content">
+            <div class="profile-pic">
+                <img src="images/WhatsApp Image 2025-05-17 at 18.27.11_0403e315.jpg">
+                
+            </div>
+            <h1>SAPAVATH JEEVANA</h1>
+            <p class="tagline">Computer Science Student | Full Stack Developer</p>
+            <div class="contact-info">
+                <a href="http://www.linkedin.com/in/jeevana-sapavath-6345a5281" target="_blank">
+                    <i>📱</i> LinkedIn
+                </a>
+                <a href="tel:+918074362695">
+                    <i>📞</i> +91 8074362695
+                </a>
+                <a href="mailto:jeevanasapavath@gmail.com">
+                    <i>✉️</i> jeevanasapavath@gmail.com
+                </a>
+                <a href="https://github.com/Jeevana4545283">
+                    <li></li>github
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-section="about">About</a></li>
+                <li><a href="#" class="nav-link" data-section="education">Education</a></li>
+                <li><a href="#" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#" class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#" class="nav-link" data-section="activities">Activities</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="about" class="active">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="objective">
+                    <h3>To excel in academics and explore new technologies to be industry ready. I am passionate about full stack development and continuously learning new technologies to enhance my skills.</h3>
+                    <p>Hi, I’m Jeevana, a B.Tech 3rd-year Computer Science student at SPSU Udaipur. I'm passionate about Web Development and UI/UX Design, and I love building creative, user-friendly websites. I'm currently looking for internship opportunities where I can apply my skills, learn from real-world experience, and grow as a developer. I'm ready to contribute with enthusiasm, creativity, and a strong desire to learn and improve.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-item">
+                    <h3>Sir Padampat Singhania University</h3>
+                    <p class="education-date">2023 - Present</p>
+                    <p><strong>Bachelor of Technology in Computer Science - Full Stack Development</strong></p>
+                    <p>Currently pursuing 2nd year of BTech</p>
+                    <p><strong>GPA:</strong> 8.3</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>KLN Junior College</h3>
+                    <p class="education-date">2021 - 2023</p>
+                    <p><strong>MATHS-PHYSICS-CHEMISTRY</strong></p>
+                    <p><strong>Percentage:</strong> 99%</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>Sri Chaitanya Techno School</h3>
+                    <p class="education-date">2016 - 2021</p>
+                    <p><strong>CGPA:</strong> 10.0</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                
+                <div class="projects-container">
+                    <div class="project-item">
+                        <h3>UI Design Project – SPSU College Portal</h3>
+                        <p class="project-description">Developed a fully responsive, component-based UI for the SPSU college portal using React.js.</p>
+                    </div>
+                    
+                    <div class="project-item">
+                        <h3>Tic Tac Toe</h3>
+                        <p class="project-description">A C++ implementation of the classic Tic Tac Toe game with interactive gameplay and win detection.</p>
+                    </div>
+                    
+                    <div class="project-item">
+                        <h3>QR Code Generator</h3>
+                        <p class="project-description">A Python application that generates QR codes for various types of data and information.</p>
+                    </div>
+                    
+                    <div class="project-item">
+                        <h3>TO-DO-LIST</h3>
+                        <p class="project-description">A frontend application to manage daily tasks with features for adding, completing, and deleting tasks.</p>
+                    </div>
+                    
+                    <div class="project-item">
+                        <h3>Quiz App</h3>
+                        <p class="project-description">An interactive quiz application with multiple categories and scoring system.</p>
+                    </div>
+                    
+                    <div class="project-item">
+                        <h3>Registration Form</h3>
+                        <p class="project-description">A form with validation for user registration, featuring responsive design and error handling.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Web Development</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Backend Technologies</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">DBMS</span>
+                            <span class="skill-tag">DSA</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">English</span>
+                            <span class="skill-tag">Hindi</span>
+                            <span class="skill-tag">Telugu</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Other Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Dancing</span>
+                            <span class="skill-tag">CSS Animation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="activities">
+            <div class="container">
+                <h2 class="section-title">Activities</h2>
+                
+                <div class="activities-container">
+                    <div class="activity-item">
+                        <div class="activity-icon">💻</div>
+                        <div class="activity-title">Coding Club Member</div>
+                        <p>Participate in coding events and collaborate on projects with fellow students.</p>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">🏃‍♀️</div>
+                        <div class="activity-title">Volunteer</div>
+                        <p>Help organize fitness events on campus and contribute to community activities.</p>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon">💃</div>
+                        <div class="activity-title">Dancing</div>
+                        <p>Passionate about dancing and participate in cultural events.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sapavath Jeevana. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Navigation handling
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all sections
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // Show the selected section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
